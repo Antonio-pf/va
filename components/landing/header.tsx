@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Menu, X, Sparkles } from "lucide-react"
+import { track } from "@vercel/analytics"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
@@ -83,7 +84,7 @@ export function Header() {
 
           {/* Desktop CTA - Glow Button */}
           <div className="hidden lg:flex items-center">
-            <Link href="#contato">
+            <Link href="#contato" onClick={() => track("cta_click", { location: "header" })}>
               <Button 
                 className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold 
                   shadow-[0_0_20px_rgba(45,212,191,0.4)] hover:shadow-[0_0_30px_rgba(45,212,191,0.6)]
@@ -137,7 +138,7 @@ export function Header() {
               </Link>
             ))}
             <div className="pt-4 px-2">
-              <Link href="#contato" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="#contato" onClick={() => { setMobileMenuOpen(false); track("cta_click", { location: "mobile_menu" }) }}>
                 <Button 
                   className="w-full bg-teal-500 hover:bg-teal-400 text-slate-950 py-6 text-base font-semibold 
                     shadow-[0_0_20px_rgba(45,212,191,0.3)] group"

@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { ArrowRight, Trophy, Sparkles } from "lucide-react"
+import { track } from "@vercel/analytics"
 import { Button } from "@/components/ui/button"
 import { AnimatedSection } from "./animated-section"
 
@@ -61,7 +62,7 @@ export function Hero() {
           {/* CTA Buttons */}
           <AnimatedSection animation="fade-up" delay={300}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="#contato">
+              <Link href="#contato" onClick={() => track("cta_click", { location: "hero_primary" })}>
                 <Button 
                   size="lg" 
                   className="w-full sm:w-auto bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold px-8 py-6 text-lg
@@ -72,7 +73,7 @@ export function Hero() {
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link href="#casos">
+              <Link href="#casos" onClick={() => track("cta_click", { location: "hero_cases" })}>
                 <Button 
                   variant="outline" 
                   size="lg"

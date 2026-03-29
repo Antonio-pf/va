@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Send, Shield, CheckCircle2 } from "lucide-react"
+import { track } from "@vercel/analytics"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { AnimatedSection } from "./animated-section"
@@ -33,8 +34,10 @@ export function Contact() {
         throw new Error("Erro ao enviar formulário")
       }
 
+      track("contact_form_submitted", { name: formData.name })
       setSubmitted(true)
     } catch (err) {
+      track("contact_form_error")
       setError("Ocorreu um erro ao enviar. Tente novamente.")
       console.error(err)
     } finally {
